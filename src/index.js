@@ -2,7 +2,7 @@ import './css/styles.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import API from "./root-js/fetchCountries";
 import getRefs from './root-js/refs';
-// import fetchCountries from "./root-js/fetchCountries";
+import fetchCountries from "./root-js/fetchCountries";
 import countryCard from "./templates/country-card.hbs";
 import countryList from "./templates/country-list.hbs";
 import { debounce } from 'lodash';
@@ -17,8 +17,10 @@ refs.searchInput.addEventListener("input", debounce(onSearchCountry, DEBOUNCE_DE
 function onSearchCountry(evt) {
     evt.preventDefault();
 
-    const inputCountryName = evt.path[0].value.trim();
-    console.log(inputCountryName);
+    const inputCountryName = evt.target.value.trim();
+
+    
+    // console.log(inputCountryName);
 
     API.fetchCountries(inputCountryName)
         .then(makeCountryCard)
